@@ -96,4 +96,5 @@ Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes
 Desenvolvido com ❤️ por **First Johnny**.
 
 - **GitHub:** @firstjohnny
-- **LinkedIn:** Seu LinkedIn Aqui
+- **LinkedIn:** www.linkedin.com/in/joão-nicolau-remos-tomás-621a1a363
+
