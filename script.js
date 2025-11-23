@@ -948,3 +948,4 @@ const CodeTrackerApp = {
 document.addEventListener("DOMContentLoaded", () => {
   CodeTrackerApp.init();
 });
+
