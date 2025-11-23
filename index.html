@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeTracker - Seu Assistente Pessoal de Estudos Dev</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <div class="logo">
+            <div class="logo-icon"><i class="fas fa-laptop-code"></i></div>
+            <div class="logo-text">
+              <h1>CodeTracker</h1>
+              <p>Seu Assistente Pessoal de Estudos Dev</p>
+            </div>
+          </div>
+          <div class="header-controls">
+            <button
+              class="theme-toggle"
+              onclick="toggleTheme()"
+              title="Alternar Tema"
+            >
+              <i id="themeIcon" class="fas fa-moon"></i>
+            </button>
+            <button
+              class="theme-toggle"
+              onclick="openSettingsModal()"
+              title="Configurações"
+            >
+              <i class="fas fa-cog"></i>
+            </button>
+            <div class="user-info">
+              <div class="user-avatar" id="userAvatar">D</div>
+              <div>
+                <div style="font-weight: 600" id="userName">Dev Iniciante</div>
+                <div style="font-size: 12px; color: var(--gray)">
+                  Nível: <span id="userLevel">Aprendiz</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <!-- Stats Cards -->
+        <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div>
+              <div class="stat-number" id="totalHours">0</div>
+              <div class="stat-label">Horas de Estudo</div>
+            </div>
+            <div class="stat-icon"><i class="fas fa-clock"></i></div>
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              id="hoursProgress"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div>
+              <div class="stat-number" id="completedTasks">0</div>
+              <div class="stat-label">Tarefas Concluídas</div>
+            </div>
+            <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              id="tasksProgress"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div>
+              <div class="stat-number" id="currentStreak">0</div>
+              <div class="stat-label">Dias de Sequência</div>
+            </div>
+            <div class="stat-icon"><i class="fas fa-fire"></i></div>
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              id="streakProgress"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div>
+              <div class="stat-number" id="achievements">0</div>
+              <div class="stat-label">Conquistas</div>
+            </div>
+            <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              id="achievementsProgress"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+        </section>
+
+        <!-- Main Content Grid -->
+        <section class="main-grid">
+        <!-- Pomodoro Timer -->
+        <div class="card">
+          <h2 class="card-title">
+            <i class="fas fa-stopwatch"></i> Timer Pomodoro
+          </h2>
+          <div class="pomodoro-timer">
+            <div class="timer-display" id="timerDisplay">25:00</div>
+            <div class="timer-controls">
+              <button class="btn btn-success" onclick="startTimer()">
+                <i class="fas fa-play"></i> Iniciar
+              </button>
+              <button class="btn btn-warning" onclick="pauseTimer()">
+                <i class="fas fa-pause"></i> Pausar
+              </button>
+              <button class="btn btn-danger" onclick="resetTimer()">
+                <i class="fas fa-sync-alt"></i> Resetar
+              </button>
+            </div>
+            <div style="margin-top: 20px">
+              <button
+                class="btn btn-light"
+                onclick="setTimer(25)"
+              >
+                25 min
+              </button>
+              <button class="btn btn-light" onclick="setTimer(5)">
+                5 min
+              </button>
+              <button class="btn btn-light" onclick="setTimer(15)">
+                15 min
+              </button>
+            </div>
+            <div style="margin-top: 20px; color: var(--gray)">
+              <small
+                ><i class="fas fa-volume-up"></i> Som ativado | Sessões
+                completadas: <span id="pomodoroCount">0</span></small
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Task Manager -->
+        <div class="card">
+          <h2 class="card-title">
+            <i class="fas fa-tasks"></i> Minhas Tarefas
+          </h2>
+          <div class="task-input-container">
+            <input
+              type="text"
+              class="task-input"
+              id="taskInput"
+              placeholder="Adicione uma nova tarefa..."
+              onkeypress="handleTaskEnter(event)"
+            />
+            <button class="btn btn-primary" onclick="addTask()">
+              <i class="fas fa-plus"></i> Adicionar
+            </button>
+            <button
+              class="btn btn-secondary"
+              onclick="generateTasksWithAI()"
+            >
+              <i class="fas fa-magic"></i> Gerar com IA
+            </button>
+          </div>
+          <div class="task-list" id="taskList"></div>
+        </div>
+        </section>
+
+        <!-- Chart & GitHub Section -->
+        <section class="main-grid">
+          <!-- Chart Section -->
+          <div class="card">
+            <h2 class="card-title">
+              <i class="fas fa-chart-line"></i> Seu Progresso Semanal
+            </h2>
+            <div class="chart-container">
+              <canvas id="progressChart"></canvas>
+            </div>
+          </div>
+
+          <!-- GitHub Section -->
+          <div class="card github-section">
+            <h2 class="card-title">
+              <i class="fab fa-github"></i> Meus Repositórios GitHub
+            </h2>
+            <div class="github-input-group">
+              <input
+                type="text"
+                class="task-input"
+                id="githubUsername"
+                placeholder="Digite seu username do GitHub..."
+                value="LoneWolfCode01"
+              />
+              <button class="btn btn-primary" onclick="loadGitHubRepos()">
+                <i class="fas fa-search"></i> Buscar
+              </button>
+            </div>
+            <div id="repoContainer" class="repo-grid"></div>
+          </div>
+        </section>
+
+        <!-- Resources and Achievements -->
+        <section class="main-grid">
+        <!-- Study Resources -->
+        <div class="card">
+          <h2 class="card-title">
+            <i class="fas fa-book"></i> Recursos de Estudo
+          </h2>
+          <div id="resourcesList"></div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="card">
+          <h2 class="card-title"><i class="fas fa-trophy"></i> Conquistas</h2>
+          <div class="achievement-grid" id="achievementGrid"></div>
+        </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>
+          &copy; 2025 CodeTracker. Desenvolvido com <i class="fas fa-heart" style="color: #ef4444;"></i> por
+          <a href="https://github.com/firstjohnny" target="_blank"
+            >First Johnny</a
+          >.
+        </p>
+      </footer>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+      <div style="font-size: 24px; margin-bottom: 10px">
+        <i class="fas fa-party-horn"></i>
+      </div>
+      <div id="notificationText" style="font-weight: 600"></div>
+    </div>
+
+    <!-- Modal for achievements -->
+    <div class="modal" id="achievementModal">
+      <div class="modal-content">
+        <div class="confetti"><i class="fas fa-party-horn"></i></div>
+        <h2 style="color: var(--primary); margin-bottom: 15px">
+          Conquista Desbloqueada!
+        </h2>
+        <p
+          id="achievementMessage"
+          style="font-size: 18px; color: var(--gray)"
+        ></p>
+        <button
+          class="btn btn-primary"
+          onclick="closeModal()"
+          style="margin-top: 20px"
+        >
+          Continuar
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal for AI Quiz -->
+    <div class="modal" id="quizModal">
+      <div class="modal-content">
+        <h2 style="color: var(--primary); margin-bottom: 15px">
+          <i class="fas fa-question-circle"></i> Teste seus Conhecimentos
+        </h2>
+        <p style="color: var(--gray); margin-bottom: 25px;">
+          Acerte a pergunta para concluir a tarefa!
+        </p>
+        <div id="quizContent">
+          <!-- O conteúdo do quiz será injetado aqui pelo JS -->
+          <div class="loading" style="margin: 20px auto;"></div>
+          <p style="color: var(--gray);">Gerando pergunta...</p>
+        </div>
+        <div id="quizResult"></div>
+      </div>
+    </div>
+
+    <!-- Modal for Settings -->
+    <div class="modal" id="settingsModal">
+      <div class="modal-content">
+        <h2 style="color: var(--primary); margin-bottom: 15px">
+          <i class="fas fa-cog"></i> Configurações
+        </h2>
+        <p style="color: var(--gray); margin-bottom: 25px;">
+          Gerencie suas configurações e chaves de API.
+        </p>
+        <div style="text-align: left;">
+          <label for="apiKeyInput" style="font-weight: 600; display: block; margin-bottom: 10px;">Chave de API (Google Gemini)</label>
+          <input type="password" id="apiKeyInput" class="task-input" placeholder="Cole sua chave de API aqui...">
+          <small style="color: var(--gray); display: block; margin-top: 5px;">Sua chave é salva apenas no seu navegador.</small>
+        </div>
+        <div style="margin-top: 30px;">
+          <button class="btn btn-primary" onclick="saveSettings()">
+            Salvar e Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Chat Button -->
+    <button class="fab" onclick="openChatModal()" title="Abrir Chat com Assistente">
+      <i class="fas fa-comments"></i>
+    </button>
+
+    <!-- Modal for AI Chat -->
+    <div class="modal" id="chatModal">
+      <div class="modal-content chat-modal-content">
+        <div class="chat-header">
+          <h2 style="color: var(--primary);"><i class="fas fa-robot"></i> Assistente IA</h2>
+          <button class="icon-btn" onclick="closeModal()" title="Fechar Chat" style="font-size: 24px;">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <!-- As mensagens do chat serão injetadas aqui -->
+        </div>
+        <div class="chat-input-container">
+          <input type="text" id="chatInput" class="task-input" placeholder="Pergunte algo ao assistente...">
+          <button class="btn btn-primary" onclick="sendMessage()">Enviar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

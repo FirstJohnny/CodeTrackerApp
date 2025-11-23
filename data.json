@@ -1,0 +1,72 @@
+{
+  "resources": [
+    {
+      "title": "MDN Web Docs",
+      "desc": "A fonte definitiva de documentação para tecnologias web como HTML, CSS e JavaScript.",
+      "link": "https://developer.mozilla.org/",
+      "tags": ["Documentação", "HTML", "CSS", "JavaScript"]
+    },
+    {
+      "title": "freeCodeCamp",
+      "desc": "Aprenda a programar gratuitamente. Construa projetos. Obtenha certificações.",
+      "link": "https://www.freecodecamp.org/",
+      "tags": ["Cursos", "Projetos", "Certificação"]
+    },
+    {
+      "title": "CSS-Tricks",
+      "desc": "Artigos diários sobre CSS, HTML, JavaScript e tudo relacionado ao design de web sites.",
+      "link": "https://css-tricks.com/",
+      "tags": ["CSS", "Frontend", "Tutoriais"]
+    },
+    {
+      "title": "Stack Overflow",
+      "desc": "O maior e mais confiável site de perguntas e respostas para programadores.",
+      "link": "https://stackoverflow.com/",
+      "tags": ["Comunidade", "Q&A", "Depuração"]
+    }
+  ],
+  "achievementsData": [
+    {
+      "id": 1,
+      "name": "Primeira Tarefa",
+      "desc": "Você adicionou sua primeira tarefa!",
+      "icon": "📝",
+      "unlocked": false
+    },
+    {
+      "id": 2,
+      "name": "Hora do Foco",
+      "desc": "Você completou sua primeira hora de estudo.",
+      "icon": "⏱️",
+      "unlocked": false
+    },
+    {
+      "id": 3,
+      "name": "Consistência é a Chave",
+      "desc": "Manteve uma sequência de 3 dias de estudos.",
+      "icon": "🔥",
+      "unlocked": false
+    },
+    {
+      "id": 4,
+      "name": "Mestre das Tarefas",
+      "desc": "Completou 10 tarefas.",
+      "icon": "✅",
+      "unlocked": false
+    },
+    {
+      "id": 5,
+      "name": "Madrugador",
+      "desc": "Começou a estudar antes das 8 da manhã.",
+      "icon": "☀️",
+      "unlocked": false
+    },
+    {
+      "id": 6,
+      "name": "Mestre Pomodoro",
+      "desc": "Completou 5 sessões Pomodoro.",
+      "icon": "🍅",
+      "unlocked": false
+    }
+  ]
+}
