@@ -11,11 +11,8 @@ Um dashboard completo para desenvolvedores que desejam organizar seus estudos, a
 
 ### ✨ Visão Geral do Projeto
 
-![Screenshot do CodeTracker](URL_DA_SUA_SCREENSHOT_AQUI)
+![Screenshot do CodeTracker](https://github.com/FirstJohnny/CodeTrackerApp/blob/main/screencapture-firstjohnny-github-io-CodeTrackerApp-2025-11-23-06_49_02.png)
 
-_(**Instrução:** Tire uma captura de tela do seu projeto e arraste o arquivo da imagem para cá no GitHub para gerar um link e substituir o texto `URL_DA_SUA_SCREENSHOT_AQUI`)_
-
----
 
 ### 🚀 Funcionalidades Principais
 
@@ -65,8 +62,7 @@ Este projeto é puramente frontend e não requer um servidor para ser executado.
 
 3.  **Configure a Chave de API:**
     - Para que as funcionalidades de Inteligência Artificial (geração de tarefas, quiz e chat) funcionem, você precisa de uma chave de API do Google Gemini.
-    - Obtenha sua chave gratuitamente no Google AI Studio.
-    - **Importante:** No painel do Google Cloud, certifique-se de que a chave **não tenha restrições de aplicativo** (ou permita chamadas de `localhost`/`file://`) para que funcione localmente no navegador.
+    - Obtenha sua chave de API gratuitamente no Google AI Studio.
     - Clique no ícone de engrenagem (⚙️) no canto superior direito do CodeTracker, cole sua chave de API e salve.
 
 Pronto! Agora todas as funcionalidades do projeto estão ativas.
@@ -97,5 +93,6 @@ Desenvolvido com ❤️ por **First Johnny**.
 
 - **GitHub:** [@firstjohnny](https://github.com/FirstJohnny)
 - **LinkedIn:** www.linkedin.com/in/joão-nicolau-remos-tomás-621a1a363
+
 
 
